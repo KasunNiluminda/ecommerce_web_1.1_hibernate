@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 11, 2023 12:17:00 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Item" table="item" catalog="j2eeb1" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="16" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="imgurl" type="string">
+            <column name="imgurl" />
+        </property>
+        <property name="isactive" type="java.lang.Boolean">
+            <column name="isactive" />
+        </property>
+        <property name="sortkey" type="java.lang.Integer">
+            <column name="sortkey" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
+        <set name="cartitems" table="cartitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="item" length="16" not-null="true" />
+            </key>
+            <one-to-many class="model.Cartitem" />
+        </set>
+    </class>
+</hibernate-mapping>
